@@ -1,9 +1,6 @@
 <?php
 function arrayTable($array, $kindex=false, $nested=true, $kpa=array()) {
-  // $array: array to print
-  // $kindex: true will show keys of indexed arrays
-  // $nested: true to print first array as table, do not change
-// $kpa: keys of previous array, do not change
+// $array: array to print | $kindex: show keys of indexed arrays | $nested: print table element | $kpa: keys of previous array.
   $table = array(null, null, null);
   foreach ($array as $key => $value) {
     if( is_array($value) or is_object($value) ) {
