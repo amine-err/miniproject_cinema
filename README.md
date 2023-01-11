@@ -100,20 +100,20 @@
     score: echelle de 1 à 5
 
 # Using github:
-1. Starting a new local repo
+1. Starting a new local repo:
     cd [path to your work folder]
     git init # in a folder to setup a git repo in it # one time
 
-2. configuration
+2. configuration:
     git config user.name "[Name]" # one time
     git config user.email "[Email]" # one time
 
 3. Working inside repo
 
-4. commiting the changes
+4. commiting the changes:
     git add --all
     git commit -m "[commit description]"
 
-5. push it to remote (github)
+5. push it to remote (github):
     git remote add origin [github/remote/repo/url].git # one time
     git push origin master # push the changes to the origin master branch
