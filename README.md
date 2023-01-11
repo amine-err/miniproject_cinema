@@ -91,21 +91,16 @@
 
 ### films:
     idFilm: AI
-    idGenre: (relation contrainte avec idGenre du table genre)
     poster: image du film
     title: titre du film
-    date:
+    year:
+    duration:
+    genre:
+    rating: note generale
     description:
+    director:
     inProjection: en cours de projection
     price: prix billet
-    rating: note generale
-    createdDate: type:timestamp; default: timestamp
-    lastModifiedDate: type:timestamp; default: timestamp
-
-### genres:
-    idGenre: AI
-    libelle: nom du genre
-    description:
     createdDate: type:timestamp; default: timestamp
     lastModifiedDate: type:timestamp; default: timestamp
 
