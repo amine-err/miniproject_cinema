@@ -18,28 +18,28 @@
 
 ### signup.php: signup page
 
-### film.php: page qui affiche plus les informations du film.
-    afficher le programme.
-    afficher le rating:
-    envoyer vers commande.php apres selection d'une heure.
+### film.php: shows more informations about a movie.
+    shows movie program.
+    shows movie rating:
+    hour selected -> send to order.php
 
-### commande.php: page de commande apres selection d'un film, condition_connexion
-    choisir combien des buillets
-    informations d'achats/personelles
+### order.php: order page after hour selection, connected_condition
+    choose tickets quantity
+    enter order personel informations
 
 ### admin.php: page de gestion des films
-    ajouter un film -> ajouter.php
-    afficher les films:
-        modifier -> modifier.php
-        supprimer -> supprimer.php
+    add a film -> add-film.php
+    show films:
+        modify -> modify-film.php
+        delete -> delete-film.php
 
 ## Sessions:
-    session d'utilisateur: $_SESSION['idAccount'] = idAccount du table account
-    session du type: $_SESSION['type'] = type depuis table account.
-    session du commande: $_SESSION['commande'] = array(idAccount, idFilm, quantite, prix)
+    session account: $_SESSION['idAccount'] = idAccount from table accounts.
+    session type: $_SESSION['type'] = type from table accounts.
+    session order: $_SESSION['order'] = array(idAccount, idFilm, quantity, price)
 
 ## structure BD: WebCinema
-### account:
+### accounts:
     idAccount: AI
     username:
     password:
@@ -54,8 +54,8 @@
     title: titre du film
     date:
     description:
-    enProjection: en cours de projection
-    prix: prix buillet
+    inProjection: en cours de projection
+    price: prix billet
     rating: note generale
     createdDate: type:timestamp; default: timestamp
     lastModifiedDate: type:timestamp; default: timestamp
@@ -71,23 +71,23 @@
     idProgram: AI
     idFilm: (relation contrainte avec idFilm du table films)
     date: jour de projection
-    heures: les heures de projection: $heures="9:00, 12:00, 16:00"
-    salle: numero de la salle
+    hours: les heures de projection: $heures="9:00, 12:00, 16:00"
+    room: numero de la salle
     createdDate: type:timestamp; default: timestamp
     lastModifiedDate: type:timestamp; default: timestamp
 
 ### commande:
-    idCmd: AI
+    idOrder: AI
     idAccount: RC
     idFilm: (relation contrainte avec idFilm du table films)
-    quantite: nombre des buillets
-    prix: prix total
+    quantity: nombre des buillets
+    price: prix total
     createdDate: type:timestamp; default: timestamp
 
 ### infoPero:
     idPerso: AI
     idAccount: RC
-    NomPrenom:
+    FullName: Nom et Prenom
     Email:
     BankCard:
     createdDate: type:timestamp; default: timestamp
@@ -97,7 +97,7 @@
     idRating: AI
     idFilm: RC
     idAccount: RC
-    note: echelle de 1 à 5
+    score: echelle de 1 à 5
 
 # Using github:
 1. Starting a new local repo
