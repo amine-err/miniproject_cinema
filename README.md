@@ -101,19 +101,23 @@
 
 # Using github:
 1. Starting a new local repo:
-    cd [path to your work folder]
-    git init # in a folder to setup a git repo in it # one time
+
+        cd [path to your work folder]
+        git init # in a folder to setup a git repo in it # one time
 
 2. configuration:
-    git config user.name "[Name]" # one time
-    git config user.email "[Email]" # one time
+
+        git config user.name "[Name]" # one time
+        git config user.email "[Email]" # one time
 
 3. Working inside repo
 
 4. commiting the changes:
-    git add --all
-    git commit -m "[commit description]"
+
+        git add --all
+        git commit -m "[commit description]"
 
 5. push it to remote (github):
-    git remote add origin [github/remote/repo/url].git # one time
-    git push origin master # push the changes to the origin master branch
+
+        git remote add origin [github/remote/repo/url].git # one time
+        git push origin master # push the changes to the origin master branch
