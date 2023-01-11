@@ -1,3 +1,4 @@
+# More complicated function used to show arrays of any dimention
 <?php
 function arrayTable($array, $kindex=false, $nested=true, $kpa=array()) {
 // $array: array to print | $kindex: show keys of indexed arrays | $nested: print table element | $kpa: keys of previous array.
