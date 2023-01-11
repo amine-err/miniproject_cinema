@@ -1,6 +1,7 @@
 # miniproject_cinema
 
 ## Files structure
+
 ### index.php: home page showing movies
    	Navbar:
         A search bar for films.
@@ -39,6 +40,7 @@
     session order: $_SESSION['order'] = array(idAccount, idFilm, quantity, price)
 
 ## structure BD: WebCinema
+
 ### accounts:
     idAccount: AI
     username:
@@ -67,7 +69,7 @@
     createdDate: type:timestamp; default: timestamp
     lastModifiedDate: type:timestamp; default: timestamp
 
-### programme:
+### programs:
     idProgram: AI
     idFilm: (relation contrainte avec idFilm du table films)
     date: jour de projection
@@ -76,7 +78,7 @@
     createdDate: type:timestamp; default: timestamp
     lastModifiedDate: type:timestamp; default: timestamp
 
-### commande:
+### orders:
     idOrder: AI
     idAccount: RC
     idFilm: (relation contrainte avec idFilm du table films)
@@ -84,12 +86,12 @@
     price: prix total
     createdDate: type:timestamp; default: timestamp
 
-### infoPero:
-    idPerso: AI
+### infos:
+    idInfo: AI
     idAccount: RC
-    FullName: Nom et Prenom
-    Email:
-    BankCard:
+    fullname: Nom et Prenom
+    email:
+    bankcard:
     createdDate: type:timestamp; default: timestamp
     lastModifiedDate: type:timestamp; default: timestamp
 
@@ -98,8 +100,11 @@
     idFilm: RC
     idAccount: RC
     score: echelle de 1 à 5
+    createdDate: type:timestamp; default: timestamp
+    lastModifiedDate: type:timestamp; default: timestamp
 
 # Using github:
+
 1. Starting a new local repo:
 
         cd [path to your work folder]
