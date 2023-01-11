@@ -3,41 +3,81 @@
 ## Files structure
 
 ### index.php: home page showing movies
-   	Navbar:
-        A search bar for films.
-        IF $_SESSION['idAccount']: show profile link
-        ELSE: show login signup link
-    Film selected -> send to film.php
-    Filtre films
+   	IF $_SESSION['account']['type']=='admin' -> admin.php
+    Navbar:
+        IF $_SESSION['idAccount']:
+            link: profile
+        ELSE: link: login, link: signup
+    Body: List of films:
+        Film selected -> film.php
+        input: A search bar for films.
+        input: Filtre films
 
-    IF $_SESSION['type']=='admin' -> send to admin.php
+### film.php: shows more informations about a movie.
+    IF $_SESSION['account']['type']!='user' -> send to index.php
+    Navbar: index navbar
+    Body: get data from POST index.php
+        shows movie program.
+        shows movie rating.
+        show form:
+            input: hours
+            input: quantity
+            button: save to shopcart: create session order
+            button: confirm -> order.php
 
 ### login.php: login page
     IF isset($_SESSION['type']) -> send to index.php
-    ELSE IF $_SESSION['type']=='admin'-> send to page admin.php
-    ELSE IF $_SESSION['type']=='user'-> send to page index.php
+    Body: login form
+        input: username
+        input: password
+        submit: check DB
+            create session type, session idAccount
+            IF $_SESSION['account']['type']=='admin'-> admin.php
+            ELSE IF $_SESSION['account']['type']=='user'-> index.php
 
 ### signup.php: signup page
+    IF isset($_SESSION['account']) -> send to index.php
+    Body: signup form
+        input: username
+        input: password
+        submit: save to DB
 
-### film.php: shows more informations about a movie.
-    shows movie program.
-    shows movie rating:
-    hour selected -> send to order.php
+### profile.php: profile page for an user account
+    IF $_SESSION['account']['type']!='user' -> send to index.php
+    Navbar: index navbar
+    Body:
+        section shopcart: show session orders
+            input: change hour
+            input: change quantity
+            button: confirm: -> order.php
+        section orders: show database orders
 
 ### order.php: order page after hour selection, connected_condition
-    choose tickets quantity
-    enter order personel informations
+    show session order
+    show total price
+    form:
+        input: personel informations
+        button: confirm order:
+            save infos to DB infos
+            save order to DB order
 
 ### admin.php: page de gestion des films
-    add a film -> add-film.php
-    show films:
-        modify -> modify-film.php
-        delete -> delete-film.php
+    menu link manage films:
+        menu link add a film -> add-film.php
+        show films with link for:
+            modify -> modify-film.php
+            delete: delete a film
+    menu link manage genre:
+        menu link add genre -> add-genre.php
+        show genres with link for:
+            modify -> modify-genre.php
+            delete: delete a genre
 
 ## Sessions:
-    session account: $_SESSION['idAccount'] = idAccount from table accounts.
-    session type: $_SESSION['type'] = type from table accounts.
-    session order: $_SESSION['order'] = array(idAccount, idFilm, quantity, price)
+    session account: $_SESSION['account']['id'] = idAccount from table accounts.
+    session type: $_SESSION['account']['type'] = type from table accounts.
+    
+    session order: $_SESSION['order'][idFilm] = array(quantity, hour, price)
 
 ## structure BD: WebCinema
 
@@ -73,7 +113,7 @@
     idProgram: AI
     idFilm: (relation contrainte avec idFilm du table films)
     date: jour de projection
-    hours: les heures de projection: $heures="9:00, 12:00, 16:00"
+    hours: les heures de projection: format="09:00,12:00,16:00"
     room: numero de la salle
     createdDate: type:timestamp; default: timestamp
     lastModifiedDate: type:timestamp; default: timestamp
@@ -82,6 +122,7 @@
     idOrder: AI
     idAccount: RC
     idFilm: (relation contrainte avec idFilm du table films)
+    hour: hour choosed, format="13:34"
     quantity: nombre des buillets
     price: prix total
     createdDate: type:timestamp; default: timestamp
@@ -89,7 +130,7 @@
 ### infos:
     idInfo: AI
     idAccount: RC
-    fullname: Nom et Prenom
+    fullname: Nom Prenom
     email:
     bankcard:
     createdDate: type:timestamp; default: timestamp

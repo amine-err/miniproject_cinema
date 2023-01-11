@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jan 11, 2023 at 02:32 PM
+-- Generation Time: Jan 11, 2023 at 05:18 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -96,6 +96,7 @@ CREATE TABLE `orders` (
   `idOrder` int(11) NOT NULL,
   `idAccount` int(11) NOT NULL,
   `idFilm` int(11) NOT NULL,
+  `hour` varchar(5) NOT NULL,
   `price` int(11) NOT NULL,
   `createdDate` timestamp NOT NULL DEFAULT current_timestamp(),
   `lastModifiedDate` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
