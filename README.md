@@ -26,7 +26,7 @@
             button: confirm -> order.php
 
 ### login.php: login page
-    IF isset($_SESSION['type']) -> send to index.php
+    IF isset($_SESSION['account']) -> send to index.php
     Body: login form
         input: username
         input: password
@@ -43,7 +43,7 @@
         submit: save to DB
 
 ### profile.php: profile page for an user account
-    IF $_SESSION['account']['type']!='user' -> send to index.php
+    IF $_SESSION['account']['type']!='user':
     Navbar: index navbar
     Body:
         section shopcart: show session orders
@@ -74,10 +74,9 @@
             delete: delete a genre
 
 ## Sessions:
-    session account: $_SESSION['account']['id'] = idAccount from table accounts.
-    session type: $_SESSION['account']['type'] = type from table accounts.
-    
-    session order: $_SESSION['order'][idFilm] = array(quantity, hour, price)
+    $_SESSION['account']['id'] = idAccount from table accounts.
+    $_SESSION['account']['type'] = type from table accounts.
+    $_SESSION['order'][] = array("idFilm"=>val, "quantity"=>val, "hour"=val, "price"=>val)
 
 ## structure BD: WebCinema
 
@@ -119,7 +118,7 @@
     idFilm: (relation contrainte avec idFilm du table films)
     hour: hour choosed, format="13:34"
     quantity: nombre des buillets
-    price: prix total
+    price: prix
     createdDate: type:timestamp; default: timestamp
 
 ### infos:
