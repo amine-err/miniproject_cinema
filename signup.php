@@ -2,22 +2,20 @@
 require "plugins/showErrors.php";
 session_start();
 if (isset($_SESSION['account'])) {
-  if ($_SESSION['account']['type']=='user') {
-    header('Location: index.php');
-    exit();
-  } elseif ($_SESSION['account']['type']=='admin') {
-    header('Location: admin.php');
-    exit();
-  }
+  header('Location: index.php');
+  exit();
 } elseif ($_SERVER["REQUEST_METHOD"] == "POST") {
   $username = $_POST["username"];
   $password = md5($_POST["password"]);
   try {
     require "plugins/PDOconn.php";
-    $stmt = $conn->prepare("INSERT INTO accounts (username, password, type) VALUES (?, ?, ?)");
-    $stmt->execute([$username, $password, 'user']);
+    $stmt = $conn->prepare("
+      INSERT INTO accounts (username, password, type)
+      VALUES (?, ?, ?) ");
+    $stmt->execute([ $username, $password, 'user' ]);
     header('Location: login.php');
     exit();
+  unset($conn, $stmt);
   } catch(PDOException $err) {
     echo "Connection failed: "  .$err->getMessage()."<br>";
     exit();

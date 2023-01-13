@@ -1,5 +1,24 @@
 # miniproject_cinema
 
+## Using github:
+    cd C:/Users/pc/Desktop/miniproject_cinema
+### First configuration:
+    git init
+    git config user.name "[Name]"
+    git config user.email "[Email]"
+    git remote add origin [github/remote/repo/url].git
+
+### To get files from github:
+    git pull origin [branch name]
+
+## To put files in github:
+git branch [branch]
+git add -A
+git commit -m "comment"
+git push origin [branch]
+
+
+
 ## Files structure
 
 ### index.php: home page showing movies
@@ -14,7 +33,7 @@
         input: Filtre films
 
 ### film.php: shows more informations about a movie.
-    IF $_SESSION['account']['type']!='user' -> send to index.php
+    IF $_SESSION['account']['type']!='admin' -> send to admin.php
     Navbar: index navbar
     Body: get data from POST index.php
         shows movie program.
@@ -67,11 +86,6 @@
         show films with link for:
             modify -> modify-film.php
             delete: delete a film
-    menu link manage genre:
-        menu link add genre -> add-genre.php
-        show genres with link for:
-            modify -> modify-genre.php
-            delete: delete a genre
 
 ## Sessions:
     $_SESSION['account']['id'] = idAccount from table accounts.
@@ -137,27 +151,3 @@
     score: echelle de 1 à 5
     createdDate: type:timestamp; default: timestamp
     lastModifiedDate: type:timestamp; default: timestamp
-
-# Using github:
-
-1. Starting a new local repo:
-
-        cd [path to your work folder]
-        git init # in a folder to setup a git repo in it # one time
-
-2. configuration:
-
-        git config user.name "[Name]" # one time
-        git config user.email "[Email]" # one time
-
-3. Working inside repo
-
-4. commiting the changes:
-
-        git add --all
-        git commit -m "[commit description]"
-
-5. push it to remote (github):
-
-        git remote add origin [github/remote/repo/url].git # one time
-        git push origin master # push the changes to the origin master branch

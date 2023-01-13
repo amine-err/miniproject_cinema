@@ -1,7 +1,7 @@
 <?php
 require "plugins/showErrors.php";
 session_start();
-if (!isset($_SESSION['account'])) {
+if (isset($_SESSION['account'])) {
   header('Location: index.php');
   exit();
 } elseif ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -46,14 +46,14 @@ if (!isset($_SESSION['account'])) {
           <form id="frm" action="login.php" method="post">
             <div class="mb-3">
               <label for="username" class="form-label">Username</label><br>
-              <input type="text" id="username" name="username" class="form-control" required style="width: 50%;"><br>
+              <input type="text" id="username" name="username" class="form-control" required><br>
             </div>
             <div class="mb-3">
               <label for="password" class="form-label">Password</label><br>
-              <input type="password" id="password" name="password" class="form-control" required style="width: 50%;"><br><br>
+              <input type="password" id="password" name="password" class="form-control" required><br><br>
             </div>
               <input type="submit" id="sbmt" value="login" class="btn btn-danger"><br>
-              <p class="form-label">You don't have an account? <a href='signup.php'><button class="btn btn-danger">signup</button></a></p>
+              <p>You don't have an account? <a href='signup.php'><button>signup</button></a></p>
             </div>
           <div class="col-md-3"></div>
         </div>
