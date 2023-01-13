@@ -7,8 +7,20 @@ if (isset($_SESSION['account']) and $_SESSION['account']['type'] == 'admin') {
 }
 try {
   require "plugins/PDOconn.php";
-  $stmt = $conn->prepare("SELECT * FROM films");
-  $stmt->execute();
+  if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $stmt = $conn->prepare("SELECT * FROM films
+    WHERE title LIKE ? and year=? and genre LIKE ? and rating>=? and inProjection=?");
+    $stmt->execute([
+      $_POST['title'],
+      $_POST['year'],
+      $_POST['genre'],
+      $_POST['rating'],
+      $_POST['inProjection']
+    ]);
+  } else {
+    $stmt = $conn->prepare("SELECT * FROM films");
+    $stmt->execute();
+  }
   $data = $stmt->fetchAll(PDO::FETCH_OBJ);
   unset($conn, $stmt);
 } catch (PDOException $err) {
@@ -83,10 +95,12 @@ try {
 </head>
 
 <body>
-  <header>
-  <?php require "plugins/navbar-user.php"; ?>
-  </header>
+  <?php require "plugins/header-user.php"; ?>
   <main>
+  <form method="POST" action="index.php" class="form-inline my-2 my-lg-0">
+    <input class="class=mb-3" type="text" placeholder="Film title" name="title" aria-label="Search">
+    <button class="class=mb-3" type="submit">Search</button>
+  </form>
   <?php require "plugins/films-user.php"; ?>
   </main>
 </body>
