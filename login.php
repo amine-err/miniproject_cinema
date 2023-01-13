@@ -1,50 +1,57 @@
-<?php
-require "plugins/showErrors.php";
-session_start();
-if (isset($_SESSION['account'])) {
-  header('Location: index.php');
-  exit();
-}
-elseif ($_SERVER["REQUEST_METHOD"] == "POST") {
-  $username = $_POST["username"];
-  $password = $_POST["password"];
-  try {
-    require "plugins/PDOconn.php";
-    $stmt = $conn->prepare("SELECT * FROM accounts WHERE username=?");
-    $stmt->execute([$username]);
-    if($stmt->rowCount()) {
-      $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
-      unset($stmt, $conn);
-      if( md5($password)==$data[0]['password'] ) {
-        $_SESSION['account']['type'] = $data[0]['type'];
-        $_SESSION['account']['id'] = $data[0]['idAccount'];
-        header('Location: index.php');
-        exit();
-      } else { echo "wrong password try again!"; }
-    } else { echo "account not found! try signing up"; }
-  } catch(PDOException $err) {
-    echo "Connection failed: "  .$err->getMessage()."<br>";
-    exit();
-  }
-}
+<?php 
+session_start() ; 
+include "config/commandes.php"; 
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-	<title>Login</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+     integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <title>login</title>
 </head>
 <body>
-  <h1>Login page</h1>
-  <form id="frm" action="login.php" method="post">
-    <fieldset>
-      <label for="username">Username</label><br>
-      <input type="text" id="username" name="username" required><br>
-      <label for="password">Password</label><br>
-      <input type="password" id="password" name="password" required><br><br>
-      <input type="submit" id="sbmt" value="login"><br>
-      <p>You don't have an account? <a href='signup.php'><button>signup</button></a></p>
-    </fieldset>
-  </form>
+<br>
+<br>
+<br>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-6">
+            <form method="POST">
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" class="form-control" name="email" style="width: 80%;">
+                </div>
+                <div class="mb-3">
+                    <label for="motdepasse" class="form-label">Mot de passe</label>
+                    <input type="password" class="form-control" name="psd" style="width: 80%;">
+                </div>
+                
+                <input type="submit" class="btn btn-danger" name="envoyer" value="Se connecter">
+            </form>
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+</div>  
 </body>
 </html>
+<?php 
+if(isset($_POST['envoyer'])) {
+    if(!empty($_POST['email']) AND !empty($_POST['psd'])){
+        $email=htmlspecialchars($_POST['email']); 
+        $motpasse=htmlspecialchars($_POST['psd']);
+
+        $admin =  getAdmin($email, $motpasse) ;
+        
+        if($admin){
+            $_SESSION['admin'] = $admin ; 
+            header("location: admin/Ajt.php") ; 
+        }else{
+            echo "il y a un Probleme !" ; 
+        }
+    }
+}
+?>
