@@ -58,33 +58,35 @@ session_start();
           <thead>
             <tr>
               <th scope="col">#</th>
-              <th scope="col">image</th>
-              <th scope="col">Nom</th>
-              <th scope="col">Prix</th>
-              <th scope="col">Description</th>
-              <th scope="col">IdGenre</th>
-              <th scope="col">Annee</th>
-              <th scope="col">Duree</th>
-              <th scope="col">Resumé</th>
+              <th scope="col">poster</th>
+              <th scope="col">title</th>
+              <th scope="col">price</th>
+              <th scope="col">description</th>
+              <th scope="col">genre</th>
+              <th scope="col">year</th>
+              <th scope="col">duration</th>
               <th scope="col">Projection</th>
-              <th scope="col">Editer</th>
+              <th scope="col">Edit</th>
             </tr>
           </thead>
           <tbody>
             <?php foreach ($Films as $film) :  ?>
               <tr>
-                <th scope="row"><?= $film->id ?></th>
+                <th scope="row"><?= $film->idFilm ?></th>
                 <td>
-                  <img src="<?= $film->imagee ?>" style="width : 15%">
+                  <img src="<?= $film->poster ?>" style="width : 100%">
                 </td>
-                <td><?= $film->nom ?></td>
-                <td style="font-weight: bold; color: green;"><?= $film->prix ?>$</td>
-                <td><?= substr($film->descri, 0, 10) ?>...</td>
-                <td><?= $film->idGenre ?></td>
-                <td><?= $film->annee ?></td>
-                <td><?= $film->duree ?></td>
-                <td><?= $film->resumé ?></td>
-                <td><?= $film->projection ?></td>
+                <td><?= $film->title ?></td>
+                <td style="font-weight: bold; color: green;"><?= $film->price ?>$</td>
+                <td><?= substr($film->description, 0, 10) ?>...</td>
+                <td><?= $film->genre ?></td>
+                <td><?= $film->year ?></td>
+                <td><?= $film->duration ?></td>
+                <td><?php
+                    if ($film->inProjection) {
+                      echo "In projection";
+                    } ?>
+                </td>
                 <td>
                   <a href="modifier.php?pdt=<?= $film->id ?>"><i class="fa fa-pencil"></i></a>
                 </td>

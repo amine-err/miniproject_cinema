@@ -117,23 +117,23 @@ try {
     <div class="album py-5 bg-light">
       <div class="container">
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-          <?php foreach ($Films as $film): ?>
+          <?php foreach ($Films as $film) : ?>
             <form id="frm" action="film.php" method="post">
-            <div class="col">
-              <div class="card shadow-sm">
-                <img src="<?= $film->poster ?>">
-                <div class="card-body">
-                  <input type="submit" class="card-text"><?= $film->title ?> >
-                  <p class="card-text">Genre: <?= $film->genre ?></p>
-                  <p class="card-text">Year: <?= $film->year ?></p>
-                  <p class="card-text"><?php
-                  if ($film->inProjection) {
-                    echo "In projection";
-                  } ?>
-                  
+              <div class="col">
+                <div class="card shadow-sm">
+                  <img src="<?= $film->poster ?>">
+                  <div class="card-body">
+                    <input type="submit" class="card-text"><?= $film->title ?> >
+                    <p class="card-text">Genre: <?= $film->genre ?></p>
+                    <p class="card-text">Year: <?= $film->year ?></p>
+                    <p class="card-text">
+                      <?php
+                      if ($film->inProjection) {
+                        echo "In projection";} ?>
+                    </p>
+                  </div>
                 </div>
               </div>
-            </div>
             </form>
           <?php endforeach; ?>
         </div>

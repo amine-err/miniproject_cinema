@@ -1,7 +1,7 @@
 <?php
 require "plugins/showErrors.php";
 session_start();
-if (!isset($_SESSION['account'])) {
+if (isset($_SESSION['account'])) {
 	header('Location: index.php');
 	exit();
 } elseif ($_SERVER["REQUEST_METHOD"] == "POST") {
