@@ -1,5 +1,5 @@
 <?php
-require("../config/commandes.php") ; 
+require("plugins/commandes.php") ; 
 $Films = afficher() ; 
 session_start();
 ?>
@@ -74,19 +74,11 @@ session_start();
 
     </div>
 </div></div>
-    <?php 
-	try{
-    $chaine = 'mysql:host=localhost;dbname=base2;charset=utf8';
-    $user = 'root' ;
-    $password = '' ;
-    $connexion = new PDO($chaine , $user , $password) ;
-}
-catch(PDOException $e){
-    echo "erreur : ".$e->getMessage();
-}
+<?php
 if (isset($_POST['supp'])) {
     try{
-      $req=$connexion->prepare("DELETE FROM films WHERE id=?") ; 
+      require "plugins/PDOconn.php";
+      $req=$conn->prepare("DELETE FROM films WHERE id=?") ; 
       $req->bindValue(1,$_POST['idf']) ; 
       $req->execute() ; 
       echo "Supprimer Bien" ; 
