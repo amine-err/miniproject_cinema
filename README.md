@@ -19,21 +19,36 @@ to get files from github you have two options, either you pull the files into yo
 
 Or if you want to pull the changes but in a seperate branch you should fetch then merge
 
-    # create a branch:
+create a branch:
+
     git branch [branch]
-    # switch to it:
+
+switch to it:
+
     git switch [branch]
-    # fetch changes from remote:
+
+fetch changes from remote:
+
     git fetch origin [remote branch]
-    # merge these changes with branch
-    git merge -m "[description]" [branch] # merge [branch] to current selected branch
+
+merge these changes with branch
+
+    git merge -m "[description]" [remote branch]
 
 ### To put files in github:
-    git branch [branch]
-    git switch [branch]
+
+    git branch [new branch]
+    git switch [new branch]
     git add -A
     git commit -m "comment"
-    git push origin [branch]
+    git push origin [new branch]
+
+### Other commands:
+
+to see differences between two branches
+
+    git diff [branch1]..[branch2]
+
 
 ## Files structure
 
