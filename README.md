@@ -1,7 +1,11 @@
 # miniproject_cinema
 
 ## Using github:
+
+first enter this command in git bash to change directory
+
     cd C:/Users/pc/Desktop/miniproject_cinema
+
 ### First configuration:
     git init
     git config user.name "[Name]"
@@ -9,15 +13,27 @@
     git remote add origin [github/remote/repo/url].git
 
 ### To get files from github:
+to get files from github you have two options, either you pull the files into your local repo, this will chnage the branch in your local that has the same name as the remote.
+
     git pull origin [branch name]
 
-## To put files in github:
-git branch [branch]
-git add -A
-git commit -m "comment"
-git push origin [branch]
+Or if you want to pull the changes but in a seperate branch you should fetch then merge
 
+    # create a branch:
+    git branch [branch]
+    # switch to it:
+    git switch [branch]
+    # fetch changes from remote:
+    git fetch origin [remote branch]
+    # merge these changes with branch
+    git merge -m "[description]" [branch] # merge [branch] to current selected branch
 
+### To put files in github:
+    git branch [branch]
+    git switch [branch]
+    git add -A
+    git commit -m "comment"
+    git push origin [branch]
 
 ## Files structure
 
