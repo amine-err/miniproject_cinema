@@ -118,24 +118,23 @@ try {
       <div class="container">
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
           <?php foreach ($Films as $film): ?>
+            <form id="frm" action="film.php" method="post">
             <div class="col">
               <div class="card shadow-sm">
-                <title><?php $film->title ?></title>
                 <img src="<?= $film->poster ?>">
                 <div class="card-body">
-                  <p class="card-text"><?= substr($film->title, 0, 200) ?></p>
-                  <p class="card-text"><?= substr($film->genre, 0, 200) ?></p>
-                  <p class="card-text"><?= substr($film->year, 0, 200) ?></p>
-                  <p class="card-text"><?= substr($film->inProjection, 0, 200) ?></p>
-                  <div class="d-flex justify-content-between align-items-center">
-                    <div class="btn-group">
-                      <button type="button" class="btn btn-sm btn-outline-secondary">Acheter</button>
-                    </div>
-                    <small class="text-muted"> <?= $film->price ?>MAD</small>
-                  </div>
+                  <input type="submit" class="card-text"><?= $film->title ?> >
+                  <p class="card-text">Genre: <?= $film->genre ?></p>
+                  <p class="card-text">Year: <?= $film->year ?></p>
+                  <p class="card-text"><?php
+                  if ($film->inProjection) {
+                    echo "In projection";
+                  } ?>
+                  
                 </div>
               </div>
             </div>
+            </form>
           <?php endforeach; ?>
         </div>
       </div>
