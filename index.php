@@ -5,8 +5,15 @@ if (isset($_SESSION['account']) and $_SESSION['account']['type'] == 'admin') {
   header('Location: admin.php');
   exit();
 }
-require("plugins/commandes.php");
-$Films = afficher();
+try {
+  require "plugins/PDOconn.php";
+  $req = $conn->prepare("SELECT * FROM films");
+  $req->execute();
+  $Films = $req->fetchAll(PDO::FETCH_OBJ);
+} catch (PDOException $err) {
+  echo "Connection failed: "  . $err->getMessage() . "<br>";
+  exit();
+}
 ?>
 <!doctype html>
 <html lang="en">
@@ -110,24 +117,21 @@ $Films = afficher();
     <div class="album py-5 bg-light">
       <div class="container">
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-          <?php foreach ($Films as $film) : ?>
+          <?php foreach ($Films as $film): ?>
             <div class="col">
               <div class="card shadow-sm">
-                <title><?= $film->nom ?></title>
-                <img src="<?= $film->imagee ?>">
+                <title><?php $film->title ?></title>
+                <img src="<?= $film->poster ?>">
                 <div class="card-body">
-                  <p class="card-text"><?= substr($film->descri, 0, 200) ?></p>
-                  <p class="card-text"><?= substr($film->idGenre, 0, 200) ?></p>
-                  <p class="card-text"><?= substr($film->annee, 0, 200) ?></p>
-                  <p class="card-text"><?= substr($film->resumé, 0, 200) ?></p>
-                  <p class="card-text"><?= substr($film->projection, 0, 200) ?></p>
-                  <p class="card-text"><?= substr($film->createdDate, 0, 200) ?></p>
-                  <p class="card-text"><?= substr($film->lastModifiedDate, 0, 200) ?></p>
+                  <p class="card-text"><?= substr($film->title, 0, 200) ?></p>
+                  <p class="card-text"><?= substr($film->genre, 0, 200) ?></p>
+                  <p class="card-text"><?= substr($film->year, 0, 200) ?></p>
+                  <p class="card-text"><?= substr($film->inProjection, 0, 200) ?></p>
                   <div class="d-flex justify-content-between align-items-center">
                     <div class="btn-group">
                       <button type="button" class="btn btn-sm btn-outline-secondary">Acheter</button>
                     </div>
-                    <small class="text-muted"> <?= $film->prix ?>$</small>
+                    <small class="text-muted"> <?= $film->price ?>MAD</small>
                   </div>
                 </div>
               </div>

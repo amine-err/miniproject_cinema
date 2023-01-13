@@ -1,6 +1,13 @@
 <?php
-require("plugins/commandes.php") ; 
-$Films = afficher() ; 
+try {
+  require "plugins/PDOconn.php";
+  $req = $conn->prepare("SELECT * FROM films");
+  $req->execute();
+  $Films = $req->fetchAll(PDO::FETCH_OBJ);
+} catch (PDOException $err) {
+  echo "Connection failed: "  . $err->getMessage() . "<br>";
+  exit();
+}
 session_start();
 ?>
 
