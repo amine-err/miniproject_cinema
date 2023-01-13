@@ -29,35 +29,41 @@ if (!isset($_SESSION['account'])) {
 ?>
 <!DOCTYPE html>
 <html>
+
 <head>
-  <meta charset="UTF-8">
-	<title>Login</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-     integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 </head>
+
 <body>
-<br>
-<br>
-<br>
-  <div class="container-fluid">
-    <div class="row">
-        <div class="col-md-3"></div>
-        <div class="col-md-6">
-          <form id="frm" action="login.php" method="post">
-            <div class="mb-3">
-              <label for="username" class="form-label">Username</label><br>
-              <input type="text" id="username" name="username" class="form-control" required style="width: 50%;"><br>
+    <br>
+    <br>
+    <br>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-6">
+                <form id="frm" action="login.php" method="post">
+                    <div class="mb-3">
+                        <label for="username" class="form-label">Username</label><br>
+                        <input type="text" id="username" name="username" class="form-control" required
+                            style="width: 50%;"><br>
+                    </div>
+                    <div class="mb-3">
+                        <label for="password" class="form-label">Password</label><br>
+                        <input type="password" id="password" name="password" class="form-control" required
+                            style="width: 50%;"><br><br>
+                    </div>
+                    <input type="submit" id="sbmt" value="login" class="btn btn-danger"><br>
+                    <p class="form-label">You don't have an account? <a href='signup.php'><button
+                                class="btn btn-danger">signup</button></a></p>
+				</form>
             </div>
-            <div class="mb-3">
-              <label for="password" class="form-label">Password</label><br>
-              <input type="password" id="password" name="password" class="form-control" required style="width: 50%;"><br><br>
-            </div>
-              <input type="submit" id="sbmt" value="login" class="btn btn-danger"><br>
-              <p class="form-label">You don't have an account? <a href='signup.php'><button class="btn btn-danger">signup</button></a></p>
-            </div>
-          <div class="col-md-3"></div>
+            <div class="col-md-3"></div>
         </div>
-      </div>  
-  </form>
+    </div> 
 </body>
+
 </html>
