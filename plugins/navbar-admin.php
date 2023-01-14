@@ -14,7 +14,10 @@
 						<a class="nav-link" href="delete.php">Delete</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link active" aria-current="page" href="admin.php" style="font-weight: bold">Films</a>
+						<a class="nav-link" aria-current="page" href="admin.php">Films</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" aria-current="page" href="modify.php">Modify</a>
 					</li>
 				</ul>
 				<div style="display: flex; justify-content: flex-end; ">

@@ -5,16 +5,6 @@ if (isset($_SESSION['account']) and $_SESSION['account']['type'] == 'admin') {
   header('Location: admin.php');
   exit();
 }
-try {
-  require "plugins/PDOconn.php";
-  $stmt = $conn->prepare("SELECT * FROM films LIMIT 20");
-  $stmt->execute();
-  $data = $stmt->fetchAll(PDO::FETCH_OBJ);
-  unset($conn, $stmt);
-} catch (PDOException $err) {
-  echo "Connection failed: "  . $err->getMessage() . "<br>";
-  exit();
-}
 ?>
 <!doctype html>
 <html lang="en">
@@ -90,7 +80,31 @@ try {
     ?>
   </header>
   <main>
-    <?php require "plugins/films-user.php"; ?>
+    <div class="container mt-5">
+      <h1 class="h2 fw-normal">Airing now</h1>
+    </div>
+    <?php
+    try {
+      require "plugins/PDOconn.php";
+      $stmt = $conn->prepare("SELECT * FROM films WHERE inProjection=1 LIMIT 30");
+      $stmt->execute();
+      $data = $stmt->fetchAll(PDO::FETCH_OBJ);
+      require "plugins/films-user.php";
+      $stmt = $conn->prepare("SELECT * FROM films WHERE inProjection=0 LIMIT 30");
+      $stmt->execute();
+      $data = $stmt->fetchAll(PDO::FETCH_OBJ);
+    ?>
+      <div class="container">
+        <h1 class="h2 fw-normal">Other movies</h1>
+      </div>
+    <?php
+      require "plugins/films-user.php";
+      unset($conn, $stmt);
+    } catch (PDOException $err) {
+      echo "Connection failed: "  . $err->getMessage() . "<br>";
+      exit();
+    }
+    ?>
   </main>
 </body>
 

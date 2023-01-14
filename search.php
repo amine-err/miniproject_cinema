@@ -14,7 +14,7 @@ try {
     $rating = isset($_POST['rating']) ? $_POST['rating'] : 0;
     $inProjection = isset($_POST['inProjection']) ? $_POST['inProjection'] : '';
     $stmt = $conn->prepare("SELECT * FROM films
-    WHERE title LIKE ? and CAST(year as CHAR) LIKE ? and genre LIKE ? and rating>=? and CAST(year as CHAR) LIKE ?");
+    WHERE title LIKE ? and CAST(year as CHAR) LIKE ? and genre LIKE ? and rating>=? and CAST(inProjection as CHAR) LIKE ?");
     $stmt->execute([
       "%$title%",
       "%$year%",
@@ -108,15 +108,40 @@ try {
   </header>
   <main>
     <div class="container my-3">
-      <div class="row">
+      <div class="row align-items-center">
         <div class="col-12">
           <div class="card shadow-sm">
-            <form id="frm" action="search.php" method="post">
-              dqd
+            <form class="p-4 row align-items-center" id="frm" action="search.php" method="post">
+              <div class="col">
+                <label for='genre'>Genre </label>
+                <input type='text' name='genre'>
+              </div>
+              <div class="col">
+                <label for='year'>Year </label>
+                <input name='year' type="number" min="1900" max="2099" step="1" />
+              </div>
+              <div class="col">
+                <label for='rating'>Rating </label>
+                <input name='rating' type="number" min="1" max="5" step="0.5" />
+              </div>
+              <div class="col">
+                <label for='inProjection'>Airing now </label><br>
+                <select name='inProjection'>
+                  <option value='1'>Yes</option>
+                  <option value='0'>No</option>
+                </select>
+              </div>
+              <input type="hidden" name="title" value="<?= $title ?>">
+              <div class="col-auto">
+                <input type='submit' id='sbmt' value='apply'>
+              </div>
             </form>
           </div>
         </div>
       </div>
+    </div>
+    <div class="container">
+      <h1 class="h2 fw-normal">Search results for: <?= $title ?></h1>
     </div>
     <?php require "plugins/films-user.php"; ?>
   </main>
