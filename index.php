@@ -7,7 +7,7 @@ if (isset($_SESSION['account']) and $_SESSION['account']['type'] == 'admin') {
 }
 try {
   require "plugins/PDOconn.php";
-  $stmt = $conn->prepare("SELECT * FROM films");
+  $stmt = $conn->prepare("SELECT * FROM films LIMIT 20");
   $stmt->execute();
   $data = $stmt->fetchAll(PDO::FETCH_OBJ);
   unset($conn, $stmt);

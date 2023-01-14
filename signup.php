@@ -51,8 +51,9 @@ if (isset($_SESSION['account'])) {
 </head>
 
 <body class="bg-dark">
-  <br>
-  <br>
+  <header>
+    <?php require "plugins/nav.php"; ?>
+  </header>
   <br>
   <div class="row w-100">
     <div class="col-3"></div>
@@ -87,7 +88,7 @@ if (isset($_SESSION['account'])) {
               </div>
 
               <!-- Submit button -->
-              <input type="submit" id="sbmt" value="signup" class="btn btn-primary btn-block mb-4">
+              <input type="submit" id="sbmt" value="Signup" class="btn btn-primary btn-block mb-4">
 
             </form>
 

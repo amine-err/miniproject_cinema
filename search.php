@@ -39,10 +39,7 @@ try {
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="">
-  <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
-  <meta name="generator" content="Hugo 0.104.2">
-  <title>Album example · Bootstrap v5.2</title>
+  <title>Search</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
   <style>
@@ -110,10 +107,17 @@ try {
     ?>
   </header>
   <main>
-    <form method="POST" action="index.php" class="form-inline my-2 my-lg-0">
-      <input class="class=mb-3" type="text" placeholder="Film title" name="title" aria-label="Search">
-      <button class="class=mb-3" type="submit">Search</button>
-    </form>
+    <div class="container my-3">
+      <div class="row">
+        <div class="col-12">
+          <div class="card shadow-sm">
+            <form id="frm" action="search.php" method="post">
+              dqd
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
     <?php require "plugins/films-user.php"; ?>
   </main>
 </body>
