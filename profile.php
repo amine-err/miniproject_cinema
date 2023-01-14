@@ -3,7 +3,7 @@ require "plugins/showErrors.php";
 require_once "plugins/f_arrayTable.php";
 session_start();
 if (!isset($_SESSION['account']) or $_SESSION['account']['type'] != 'user') {
-  header('Location: index.php');
+  header('Location: login.php');
   exit();
 } elseif ($_SERVER["REQUEST_METHOD"] == "POST") {
   $id = $_POST['idFilm'];
@@ -90,43 +90,43 @@ if (!isset($_SESSION['account']) or $_SESSION['account']['type'] != 'user') {
     ?>
   </header>
   <?php if (isset($_SESSION['order'])) {  ?>
-  <div>
-    <div class="album py-5 bg-light">
-      <div class="container">
-        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3"></div>
-        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-          <h3 class="col">Shopcart orders</h3>
-          <table class="table">
-            <thead>
-              <tr>
-                <th scope="col">#</th>
-                <th scope="col">poster</th>
-                <th scope="col">quantity</th>
-                <th scope="col">price</th>
-                <th scope="col">hour</th>
-              </tr>
-            </thead>
-            <tbody>
-              <?php foreach ($_SESSION['order'] as $order) :  ?>
+    <div>
+      <div class="album py-5 bg-light">
+        <div class="container">
+          <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3"></div>
+          <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+            <h3 class="col">Shopcart orders</h3>
+            <table class="table">
+              <thead>
                 <tr>
-                  <th scope="row"><?= $order['idFilm'] ?></th>
-                  <td>
-                    <img src="<?= $order['poster'] ?>" style="width: 30%">
-                  </td>
-                  <td><?= $order['quantity'] ?></td>
-                  <td style="font-weight: bold; color: green;"><?= $order['price'] ?>$</td>
-                  <td><?= $order['hour'] ?></td>
+                  <th scope="col">#</th>
+                  <th scope="col">poster</th>
+                  <th scope="col">quantity</th>
+                  <th scope="col">price</th>
+                  <th scope="col">hour</th>
                 </tr>
-              <?php endforeach; ?>
-          </table>
-          <div>
-            <a href="order.php" class="btn btn-danger">Confirm order</a>
+              </thead>
+              <tbody>
+                <?php foreach ($_SESSION['order'] as $order) :  ?>
+                  <tr>
+                    <th scope="row"><?= $order['idFilm'] ?></th>
+                    <td>
+                      <img src="<?= $order['poster'] ?>" style="width: 30%">
+                    </td>
+                    <td><?= $order['quantity'] ?></td>
+                    <td style="font-weight: bold; color: green;"><?= $order['price'] ?>$</td>
+                    <td><?= $order['hour'] ?></td>
+                  </tr>
+                <?php endforeach; ?>
+            </table>
+            <div>
+              <a href="order.php" class="btn btn-danger">Confirm order</a>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-  <div>
+    <div>
     <?php } ?>
     <?php
     try {

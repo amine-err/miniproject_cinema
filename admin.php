@@ -53,8 +53,8 @@ session_start();
                   <img src="<?= $film->poster ?>" style="width : 100%">
                 </td>
                 <td><?= $film->title ?></td>
-                <td style="font-weight: bold; color: green;"><?= $film->price ?>$</td>
-                <td><?= substr($film->description, 0, 10) ?>...</td>
+                <td style="font-weight: bold; color: green;"><?= $film->price ?> MAD</td>
+                <td><?= substr($film->description, 0, 30) ?>...</td>
                 <td><?= $film->genre ?></td>
                 <td><?= $film->year ?></td>
                 <td><?= $film->duration ?></td>

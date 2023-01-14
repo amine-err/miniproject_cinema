@@ -13,9 +13,7 @@ if (isset($_SESSION['account'])) {
       INSERT INTO accounts (username, password, type)
       VALUES (?, ?, ?) ");
     $stmt->execute([$username, $password, 'user']);
-    $_SESSION['account']['type'] = $data[0]['type'];
-    $_SESSION['account']['id'] = $data[0]['idAccount'];
-    header('Location: index.php');
+    header('Location: login.php');
     exit();
     unset($conn, $stmt);
   } catch (PDOException $err) {
@@ -65,20 +63,17 @@ if (isset($_SESSION['account'])) {
         </div>
         <div class="col-8">
           <div class="card-body py-5 px-5">
-
             <form id="frm" action="signup.php" method="post">
               <!-- Username input -->
               <div class="form-outline mb-4">
                 <input type="text" id="form2Example1" class="form-control" name="username" required />
                 <label class="form-label" for="form2Example1">Username</label>
               </div>
-
               <!-- Password input -->
               <div class="form-outline mb-4">
                 <input type="password" id="form2Example2" class="form-control" name="password" required />
                 <label class="form-label" for="form2Example2">Password</label>
               </div>
-
               <!-- 2 column grid layout for inline styling -->
               <div class="row mb-4">
                 <div class="col">
@@ -86,12 +81,9 @@ if (isset($_SESSION['account'])) {
                   <p class="form-label">You already have an account? <a href='login.php'>login here!</a></p>
                 </div>
               </div>
-
               <!-- Submit button -->
               <input type="submit" id="sbmt" value="Signup" class="btn btn-primary btn-block mb-4">
-
             </form>
-
           </div>
         </div>
       </div>
