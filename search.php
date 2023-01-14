@@ -8,14 +8,19 @@ if (isset($_SESSION['account']) and $_SESSION['account']['type'] == 'admin') {
 try {
   require "plugins/PDOconn.php";
   if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $title = isset($_POST['title']) ? $_POST['title'] : '';
+    $genre = isset($_POST['genre']) ? $_POST['genre'] : '';
+    $year = isset($_POST['year']) ? $_POST['year'] : '';
+    $rating = isset($_POST['rating']) ? $_POST['rating'] : 0;
+    $inProjection = isset($_POST['inProjection']) ? $_POST['inProjection'] : '';
     $stmt = $conn->prepare("SELECT * FROM films
-    WHERE title LIKE ? and year=? and genre LIKE ? and rating>=? and inProjection=?");
+    WHERE title LIKE ? and CAST(year as CHAR) LIKE ? and genre LIKE ? and rating>=? and CAST(year as CHAR) LIKE ?");
     $stmt->execute([
-      $_POST['title'],
-      $_POST['year'],
-      $_POST['genre'],
-      $_POST['rating'],
-      $_POST['inProjection']
+      "%$title%",
+      "%$year%",
+      "%$genre%",
+      $rating,
+      "%$inProjection%",
     ]);
   } else {
     $stmt = $conn->prepare("SELECT * FROM films");
@@ -95,13 +100,21 @@ try {
 </head>
 
 <body>
-  <?php require "plugins/header-user.php"; ?>
+  <header>
+    <?php
+    if (isset($_SESSION['account']) and $_SESSION['account']['type'] == 'user') {
+      require "plugins/navbar-user.php";
+    } else {
+      require "plugins/navbar.php";
+    }
+    ?>
+  </header>
   <main>
-  <form method="POST" action="index.php" class="form-inline my-2 my-lg-0">
-    <input class="class=mb-3" type="text" placeholder="Film title" name="title" aria-label="Search">
-    <button class="class=mb-3" type="submit">Search</button>
-  </form>
-  <?php require "plugins/films-user.php"; ?>
+    <form method="POST" action="index.php" class="form-inline my-2 my-lg-0">
+      <input class="class=mb-3" type="text" placeholder="Film title" name="title" aria-label="Search">
+      <button class="class=mb-3" type="submit">Search</button>
+    </form>
+    <?php require "plugins/films-user.php"; ?>
   </main>
 </body>
 

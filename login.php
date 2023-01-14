@@ -40,52 +40,31 @@ if (isset($_SESSION['account'])) {
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 </head>
 
-<body>
+<body class="bg-dark">
 	<br>
 	<br>
 	<br>
-	<!-- Section: Design Block -->
-	<section class=" text-center text-lg-start">
-		<style>
-			.rounded-t-5 {
-				border-top-left-radius: 0.5rem;
-				border-top-right-radius: 0.5rem;
-			}
-
-			@media (min-width: 992px) {
-				.rounded-tr-lg-0 {
-					border-top-right-radius: 0;
-				}
-
-				.rounded-bl-lg-5 {
-					border-bottom-left-radius: 0.5rem;
-				}
-			}
-		</style>
-		<div class="row">
+	<div class="row w-100">
 		<div class="col-3"></div>
 		<div class="col-6 card mb-3">
-			<div class="row g-0 d-flex align-items-center">
-				<div class="col-lg-4 d-none d-lg-flex">
-					<img src="https://imgs.search.brave.com/DQCFlY655vbS8VzGr4gHRnQGBkIjOSdHQVs6_p5o8I4/rs:fit:1200:1200:1/g:ce/aHR0cHM6Ly9pLnBp/bmltZy5jb20vb3Jp/Z2luYWxzLzhiLzk5/L2FjLzhiOTlhYzlk/NGM2YWIzM2RlMzVh/Nzc1ZTUyN2QyZmFl/LnBuZw"
-						alt="Trendy Pants and Shoes" class="w-100 rounded-t-5 rounded-tr-lg-0 rounded-bl-lg-5" />
+			<h1 class="text-center h2 mt-5 fw-normal">Login to your account</h1>
+			<div class="row g-0 align-items-center">
+				<div class="col-4">
+					<img src="images/popcorn.webp" class="w-100 rounded-t-5 rounded-tr-lg-0 rounded-bl-lg-5" />
 				</div>
-				<div class="col-lg-8">
-					<div class="card-body py-5 px-md-5">
-
-					<form id="frm" action="login.php" method="post">
+				<div class="col-8">
+					<div class="card-body py-5 px-5">
+						<form id="frm" action="login.php" method="post">
 							<!-- Username input -->
 							<div class="form-outline mb-4">
-								<input type="text" id="form2Example1" class="form-control" name="username" required/>
+								<input type="text" id="form2Example1" class="form-control" name="username" required />
 								<label class="form-label" for="form2Example1">Username</label>
 							</div>
-
 							<!-- Password input -->
 							<div class="form-outline mb-4">
-								<input type="password" id="form2Example2" class="form-control" name="password" required/>
+								<input type="password" id="form2Example2" class="form-control" name="password" required />
 								<label class="form-label" for="form2Example2">Password</label>
 							</div>
-
 							<!-- 2 column grid layout for inline styling -->
 							<div class="row mb-4">
 								<div class="col">
@@ -93,20 +72,15 @@ if (isset($_SESSION['account'])) {
 									<p class="form-label">You don't have an account? <a href='signup.php'>signup here!</a></p>
 								</div>
 							</div>
-
 							<!-- Submit button -->
-							<input type="submit" id="sbmt" value="login" class="btn btn-primary btn-block mb-4">
-
+							<input type="submit" id="sbmt" value="signup" class="btn btn-primary btn-block mb-4">
 						</form>
-
 					</div>
 				</div>
 			</div>
 		</div>
 		<div class="col-3"></div>
-		</div>
-	</section>
-	<!-- Section: Design Block -->
+	</div>
 </body>
 
 </html>

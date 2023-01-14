@@ -24,10 +24,10 @@
         </div>
       </form>
       <button type="button" class="btn btn-outline-light me-2">
-        <a class="nav-link active" href="profile.php">Profile</a>
+        <a class="nav-link active" href="login.php">Login</a>
       </button>
       <button type="button" class="btn btn-warning">
-        <a class="nav-link active" href="logout.php">Logout</a>
+        <a class="nav-link active" href="signup.php">Signup</a>
       </button>
     </div>
   </div>

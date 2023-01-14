@@ -22,10 +22,7 @@ try {
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="">
-  <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
-  <meta name="generator" content="Hugo 0.104.2">
-  <title>Album example · Bootstrap v5.2</title>
+  <title>Web Cinema</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
   <style>
@@ -84,10 +81,16 @@ try {
 
 <body>
   <header>
-  <?php require "plugins/navbar-user.php"; ?>
+    <?php
+    if (isset($_SESSION['account']) and $_SESSION['account']['type'] == 'user') {
+      require "plugins/navbar-user.php";
+    } else {
+      require "plugins/navbar.php";
+    }
+    ?>
   </header>
   <main>
-  <?php require "plugins/films-user.php"; ?>
+    <?php require "plugins/films-user.php"; ?>
   </main>
 </body>
 
